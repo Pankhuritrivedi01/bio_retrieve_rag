@@ -1,0 +1,5 @@
+agno
+qdrant-client
+ollama
+fastapi
+uvicorn
