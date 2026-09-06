@@ -3,3 +3,7 @@ qdrant-client
 ollama
 fastapi
 uvicorn
+streamlit
+openai
+PyJWT
+pypdf
