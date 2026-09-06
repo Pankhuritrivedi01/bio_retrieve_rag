@@ -1,117 +1,101 @@
-🧬 BioRetrieve RAG – Healthcare Information Assistant
+# 🧬 BioRetrieve RAG — Healthcare Information Assistant
 
-BioRetrieve RAG is a Retrieval-Augmented Generation (RAG) based healthcare information assistant built using local LLMs and a vector database. It retrieves trusted healthcare documents and generates evidence-based responses using semantic search.
+> A document-grounded AI assistant that uses **Retrieval-Augmented Generation (RAG)** to answer healthcare questions using curated **WHO resources**.
 
-This project demonstrates the integration of Large Language Models (LLMs), embeddings, and vector databases for domain-specific AI applications in healthcare.
+## 🎯 What It Does
 
-🚀 Features
+BioRetrieve lets users ask healthcare questions in natural language and retrieves relevant information from indexed healthcare documents before generating a response.
 
-Retrieval-Augmented Generation (RAG) pipeline
+**Question → Embedding → Qdrant Search → Relevant Context → Llama 3.2 → Answer**
 
-Semantic search using vector embeddings
+## 📊 Current Setup
 
-Healthcare document ingestion (WHO publications)
+| Component | Implementation |
+|---|---|
+| Healthcare documents | 3 WHO-based PDFs |
+| Vector database | Qdrant |
+| Embeddings | Nomic Embed Text |
+| Embedding dimension | 768 |
+| LLM | Llama 3.2 |
+| LLM runtime | Ollama |
+| RAG framework | Agno |
+| Interface | Streamlit |
+| PDF processing | PyPDF |
 
-Evidence-based response generation
+## 🏗️ Architecture
 
-Local LLM support via Ollama
+```text
+User Question
+      ↓
+Streamlit Dashboard
+      ↓
+Nomic Embed Text
+      ↓
+Qdrant Vector Search
+      ↓
+Relevant Healthcare Context
+      ↓
+Llama 3.2 via Ollama
+      ↓
+Grounded Response
+💡 Why It Is Useful
+🔎 Quickly searches lengthy healthcare documents
+📚 Makes trusted document collections easier to explore
+🧠 Demonstrates practical RAG + LLM implementation
+🏥 Can be extended with additional healthcare resources
+💻 Provides an interactive web interface
+📚 Knowledge Base
 
-Agent-based architecture
+The current knowledge base contains WHO resources covering:
 
-Interactive UI using AgentOS
+Cardiovascular disease
+Diabetes
+Noncommunicable diseases
+🛠️ Tech Stack
 
-Built-in medical disclaimer for responsible AI usage
+Python · Streamlit · Agno · Qdrant · Ollama · Llama 3.2 · Nomic Embed Text · PyPDF
 
-🏗 Architecture
+🚀 Run Locally
+git clone https://github.com/Pankhutrivedi01/bio_retrieve_rag.git
+cd bio_retrieve_rag
 
-The system consists of:
+python -m venv .venv
+.venv\Scripts\activate
 
-LLM Model – Powered by Ollama (e.g., llama3.2)
+pip install -r requirements.txt
 
-Embedding Model – Ollama embedder for semantic search
+Start Qdrant and Ollama, then ensure these models are available:
 
-Vector Database – Qdrant for document indexing
+llama3.2
+nomic-embed-text
 
-Knowledge Base Layer – Stores and retrieves healthcare documents
+Run the dashboard:
 
-Agent Layer – Generates responses with instructions
+streamlit run ui.py
 
-AgentOS UI – Web interface for interaction
+Open:
 
-Flow:
-
-User Query → Embedding → Qdrant Search → Retrieved Context → LLM → Response
-
-🛠 Tech Stack
-
-Python
-
-Agno Framework
-
-Ollama (Local LLMs)
-
-Qdrant (Vector Database)
-
-AgentOS
-
-📦 Installation
-1️⃣ Install Dependencies
-pip install agno qdrant-client ollama
-
-2️⃣ Install and Run Ollama
-
-Download Ollama and pull a model:
-
-ollama pull llama3.2
-
-
-Make sure Ollama is running locally.
-
-3️⃣ Run Qdrant
-
-Using Docker:
-
-docker run -p 6333:6333 qdrant/qdrant
-
-▶️ Running the Application
-
-Run:
-
-python bio_retrieve_rag.py
-
-
-The AgentOS interface will launch locally.
-
-📚 Knowledge Source
-
-This project loads healthcare documentation from:
-
-WHO healthcare publications
-
-Documents are embedded and stored inside a Qdrant collection for semantic retrieval.
-
+http://localhost:8501
+📁 Project Structure
+bio_retrieve_rag/
+├── docs/                  # WHO healthcare documents
+├── ui.py                  # Streamlit dashboard
+├── bio_retrieve_rag.py    # RAG/AgentOS application
+├── requirements.txt
+├── .gitignore
+└── README.md
+🔮 Future Improvements
+Source citations for retrieved information
+Retrieval and response evaluation
+Larger verified healthcare knowledge base
+Document upload functionality
+Cloud deployment
+Conversation history
 ⚠️ Disclaimer
 
-This assistant provides informational responses based on retrieved healthcare documents. It does not provide medical advice. Always consult qualified healthcare professionals for medical decisions.
+This is an educational AI/RAG project, not a medical diagnostic or treatment system. Responses should not be used for clinical decision-making.
 
-🎯 Use Cases
+👩‍💻 Author
 
-Healthcare knowledge assistant
-
-Medical literature exploration
-
-Research support tool
-
-RAG implementation demo for healthcare AI
-
-📌 Future Improvements
-
-Add multiple healthcare document sources
-
-Support PDF ingestion
-
-Improve retrieval ranking
-
-Add citation formatting in responses
-
-Deploy as cloud application
+Pankhuri Trivedi
+B.Tech Bioinformatics | Data Science & AI
